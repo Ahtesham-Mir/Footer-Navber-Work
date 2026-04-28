@@ -1,91 +1,1368 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>National Park | Pakistan</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>National Park | Pakistan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+ 
+    :root {
+      --burnt: #c0390b;
+      --burnt-light: #e64a19;
+      --gold: #c9a96e;
+      --cream: #f5f0e8;
+      --dark: #0d0c0a;
+      --mid: #1a1714;
+      --nav-h: 76px;
+    }
+ 
+    html { scroll-behavior: smooth; }
+ 
+    body {
+      background: var(--dark);
+      color: var(--cream);
+      font-family: 'Cormorant Garamond', serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+ 
+    /* ── NAVBAR ── */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      background: rgba(10, 9, 8, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 169, 110, 0.15);
+      z-index: 1000;
+    }
+ 
+    .nav-left { flex: 1; display: flex; align-items: center; }
+    .nav-right { flex: 1; display: flex; align-items: center; justify-content: flex-end; gap: 0; }
+ 
+    .logo-area {
+      position: absolute;
+      left: 50%; transform: translateX(-50%);
+      display: flex; align-items: center; justify-content: center;
+    }
+ 
+    .logo-placeholder {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 10px; letter-spacing: 1px;
+      color: var(--gold);
+      text-align: center;
+      line-height: 1.2;
+    }
+ 
+    .main-logo { height: 54px; width: auto; }
+ 
+    .nav-btn {
+      background: none; border: none;
+      color: rgba(245,240,232,0.75);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 28px 16px;
+      transition: color 0.25s;
+      white-space: nowrap;
+    }
+    .nav-btn:hover, .nav-item:hover .nav-btn { color: var(--gold); }
+ 
+    .nav-links { display: flex; }
+    .nav-item { position: relative; }
+ 
+    .dropdown {
+      position: absolute;
+      top: var(--nav-h);
+      background: var(--mid);
+      border: 1px solid rgba(201,169,110,0.18);
+      border-top: 2px solid var(--burnt-light);
+      border-radius: 0 0 6px 6px;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: max-height 0.45s ease, opacity 0.3s ease;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+      z-index: 9999;
+    }
+ 
+    .nav-item:hover .dropdown {
+      max-height: 500px;
+      opacity: 1;
+      pointer-events: auto;
+    }
+ 
+    .simple-dropdown { left: 0; width: 190px; }
+    .dropdown-content-simple a {
+      display: block;
+      color: rgba(245,240,232,0.7);
+      padding: 13px 22px;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      transition: background 0.2s, color 0.2s;
+    }
+    .dropdown-content-simple a:hover {
+      background: var(--burnt);
+      color: #fff;
+    }
+ 
+    .mega-dropdown {
+      right: 0;
+      width: 620px;
+      display: flex;
+      align-items: stretch;
+    }
+ 
+    .mega-img-wrap {
+      width: 240px;
+      flex-shrink: 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .mega-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.75) saturate(0.9);
+      transition: transform 0.6s ease;
+    }
+    .nav-item:hover .mega-img-wrap img { transform: scale(1.05); }
+ 
+    .mega-content {
+      padding: 28px 28px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+ 
+    .mega-label {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 3px;
+      color: var(--burnt-light);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+ 
+    .mega-content h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: var(--gold);
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+    .mega-content p {
+      font-size: 14px;
+      line-height: 1.75;
+      color: rgba(245,240,232,0.65);
+      font-style: italic;
+    }
+ 
+    .mega-cta {
+      margin-top: 18px;
+      display: inline-block;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 2px;
+      color: var(--cream);
+      text-decoration: none;
+      border-bottom: 1px solid var(--burnt-light);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+      cursor: pointer;
+    }
+    .mega-cta:hover { color: var(--gold); border-color: var(--gold); }
+ 
+    .search-wrap { display: flex; align-items: center; gap: 0; margin-left: 20px; }
+ 
+    #searchInput {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(201,169,110,0.4);
+      color: var(--cream);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 12px; letter-spacing: 1px;
+      padding: 4px 8px;
+      width: 0; opacity: 0;
+      transition: width 0.4s ease, opacity 0.3s ease;
+      outline: none;
+    }
+    #searchInput::placeholder { color: rgba(245,240,232,0.35); }
+    #searchInput.open { width: 140px; opacity: 1; }
+ 
+    .search-btn {
+      background: var(--burnt);
+      color: #fff;
+      border: none;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 2px;
+      padding: 9px 18px;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .search-btn:hover { background: var(--burnt-light); }
+ 
+    /* ── HERO ── */
+    .hero-section {
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+ 
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=80');
+      background-size: cover;
+      background-position: center;
+      animation: slowzoom 18s ease-in-out infinite alternate;
+    }
+ 
+    @keyframes slowzoom {
+      from { transform: scale(1); }
+      to   { transform: scale(1.06); }
+    }
+ 
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10,9,8,0.55) 0%,
+        rgba(10,9,8,0.25) 40%,
+        rgba(10,9,8,0.65) 100%
+      );
+    }
+ 
+    .hero-grain {
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.35;
+      pointer-events: none;
+    }
+ 
+    .hero-content {
+      position: relative; z-index: 2;
+      animation: fadeup 1.4s ease both;
+    }
+ 
+    @keyframes fadeup {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+ 
+    .hero-eyebrow {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 5px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+ 
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(52px, 8vw, 92px);
+      font-weight: 900;
+      letter-spacing: 6px;
+      color: #fff;
+      line-height: 1;
+      text-shadow: 0 4px 40px rgba(0,0,0,0.5);
+    }
+ 
+    .hero-content h1 span { color: var(--gold); }
+ 
+    .subtitle {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 10px;
+      color: rgba(245,240,232,0.7);
+      margin-top: 16px;
+      text-transform: uppercase;
+    }
+ 
+    .hero-divider {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; margin: 28px auto;
+    }
+    .hero-divider span { width: 60px; height: 1px; background: rgba(201,169,110,0.5); display: block; }
+    .hero-divider i {
+      width: 7px; height: 7px;
+      border: 1px solid var(--gold);
+      transform: rotate(45deg);
+      display: block;
+    }
+ 
+    .hero-mid-logo { height: 90px; width: auto; filter: drop-shadow(0 0 20px rgba(201,169,110,0.3)); }
+ 
+    .hero-logo-placeholder {
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 11px; letter-spacing: 1.5px;
+      color: var(--gold); text-align: center;
+      line-height: 1.3;
+      margin: 0 auto;
+    }
+ 
+    .scroll-cue {
+      position: absolute;
+      bottom: 36px; left: 50%; transform: translateX(-50%);
+      z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 10px; letter-spacing: 3px;
+      color: rgba(245,240,232,0.4);
+      text-transform: uppercase;
+      animation: fadein 2s ease 1.5s both;
+    }
+    @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+ 
+    .scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollpulse 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollpulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50%       { opacity: 1;   transform: scaleY(1.15); }
+    }
+ 
+    /* ── SECTION SHARED ── */
+    .section-eyebrow {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 4px;
+      color: var(--burnt-light);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .section-title span { color: var(--gold); }
+    .gold-line {
+      width: 48px; height: 2px;
+      background: var(--gold);
+      margin: 0 auto 20px;
+    }
+    .gold-line.left { margin-left: 0; }
+ 
+    /* ── EXPLORE SECTION (like East Luwu hero) ── */
+    .explore-section {
+      position: relative;
+      height: 85vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .explore-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1800&q=80');
+      background-size: cover;
+      background-position: center 30%;
+    }
+    .explore-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(10,9,8,0.85) 40%, rgba(10,9,8,0.1) 100%),
+                  linear-gradient(to top, rgba(10,9,8,0.9) 0%, transparent 60%);
+    }
+    .explore-content {
+      position: relative; z-index: 2;
+      padding: 0 80px 80px;
+      max-width: 700px;
+    }
+    .explore-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(48px, 6vw, 80px);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .explore-content h2 span { color: var(--gold); }
+    .explore-tabs {
+      position: absolute;
+      top: 40px; right: 80px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+    .explore-tab {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 2px;
+      color: rgba(245,240,232,0.4);
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: color 0.2s;
+      text-decoration: none;
+    }
+    .explore-tab.active, .explore-tab:hover { color: var(--burnt-light); }
+    .explore-tab.active::after {
+      content: '';
+      display: inline-block;
+      width: 24px; height: 2px;
+      background: var(--burnt-light);
+      vertical-align: middle;
+      margin-left: 8px;
+    }
+    .explore-nums {
+      position: absolute;
+      right: 80px; bottom: 80px;
+      z-index: 2;
+      display: flex; flex-direction: column;
+      align-items: flex-end; gap: 4px;
+    }
+    .explore-num {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 13px; font-weight: 600;
+      color: rgba(245,240,232,0.3);
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .explore-num.active { color: var(--burnt-light); font-size: 22px; }
+    .explore-desc-row {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      z-index: 2;
+      background: rgba(10,9,8,0.85);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid rgba(201,169,110,0.12);
+    }
+    .explore-desc {
+      padding: 28px 32px;
+      border-right: 1px solid rgba(201,169,110,0.1);
+    }
+    .explore-desc:last-child { border-right: none; }
+    .explore-desc p {
+      font-size: 14px;
+      line-height: 1.75;
+      color: rgba(245,240,232,0.6);
+      font-style: italic;
+    }
+    .swipe-cta {
+      margin-top: 12px;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+    }
+ 
+    /* ── DESTINATIONS GRID ── */
+    .destinations-section {
+      padding: 100px 80px;
+      background: var(--dark);
+    }
+    .destinations-section .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .destinations-section .section-header p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: rgba(245,240,232,0.55);
+      max-width: 520px;
+      margin: 0 auto;
+      font-style: italic;
+    }
+    .dest-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .dest-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dest-card img {
+      width: 100%; height: 280px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease, filter 0.4s ease;
+      filter: brightness(0.75) saturate(0.85);
+    }
+    .dest-card:hover img {
+      transform: scale(1.07);
+      filter: brightness(0.55) saturate(1);
+    }
+    .dest-card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,9,8,0.9) 0%, transparent 55%);
+      transition: background 0.4s;
+    }
+    .dest-card-content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 20px 20px;
+    }
+    .dest-rank {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 3px;
+      color: var(--burnt-light);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .dest-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px; font-weight: 700;
+      color: #fff;
+    }
+    .dest-sub {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: rgba(245,240,232,0.5);
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+ 
+    /* ── EXPERIENCE SECTION ── */
+    .experience-section {
+      padding: 100px 80px;
+      background: var(--mid);
+    }
+    .exp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      margin-top: 60px;
+    }
+    .exp-img-wrap {
+      position: relative;
+    }
+    .exp-img-wrap img {
+      width: 100%; height: 520px;
+      object-fit: cover;
+      display: block;
+      border-radius: 2px;
+      filter: brightness(0.85) saturate(0.9);
+    }
+    .exp-img-badge {
+      position: absolute;
+      bottom: -24px; right: -24px;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: var(--burnt);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 1.5px;
+      color: #fff;
+      text-align: center;
+      line-height: 1.4;
+      text-transform: uppercase;
+      border: 3px solid var(--dark);
+    }
+    .exp-img-badge strong {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px; font-weight: 700;
+      display: block; color: #fff;
+    }
+    .exp-text .section-title { text-align: left; }
+    .exp-text p {
+      font-size: 16px;
+      line-height: 1.85;
+      color: rgba(245,240,232,0.6);
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+    .exp-stats {
+      display: flex; gap: 40px;
+      margin: 32px 0;
+      padding: 28px 0;
+      border-top: 1px solid rgba(201,169,110,0.15);
+      border-bottom: 1px solid rgba(201,169,110,0.15);
+    }
+    .exp-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px; font-weight: 700;
+      color: var(--gold);
+    }
+    .exp-stat-label {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 2px;
+      color: rgba(245,240,232,0.45);
+      text-transform: uppercase;
+    }
+    .btn-primary {
+      display: inline-block;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--burnt);
+      border: none;
+      padding: 14px 32px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.25s;
+    }
+    .btn-primary:hover { background: var(--burnt-light); }
+ 
+    /* ── WILDLIFE / VIDEO SECTION ── */
+    .wildlife-section {
+      padding: 100px 80px;
+      background: var(--dark);
+    }
+    .wildlife-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 60px;
+    }
+    .wildlife-header-right p {
+      font-size: 15px;
+      line-height: 1.75;
+      color: rgba(245,240,232,0.5);
+      font-style: italic;
+      max-width: 360px;
+      text-align: right;
+    }
+    .wildlife-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 20px;
+    }
+    .wildlife-main {
+      position: relative;
+      overflow: hidden;
+      border-radius: 3px;
+    }
+    .wildlife-main img {
+      width: 100%; height: 480px;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.75);
+      transition: transform 0.6s ease;
+    }
+    .wildlife-main:hover img { transform: scale(1.04); }
+    .wildlife-play {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 68px; height: 68px;
+      border-radius: 50%;
+      border: 2px solid rgba(245,240,232,0.6);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .wildlife-play:hover { border-color: var(--gold); background: rgba(201,169,110,0.15); }
+    .wildlife-play svg { margin-left: 4px; }
+    .wildlife-side {
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    .wildlife-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 3px;
+      flex: 1;
+    }
+    .wildlife-card img {
+      width: 100%; height: 100%;
+      min-height: 180px;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.7);
+      transition: transform 0.5s ease;
+    }
+    .wildlife-card:hover img { transform: scale(1.06); }
+    .wildlife-card-label {
+      position: absolute;
+      bottom: 16px; left: 20px;
+    }
+    .wildlife-card-label h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: #fff;
+    }
+    .wildlife-card-label span {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      color: rgba(245,240,232,0.5);
+      text-transform: uppercase;
+    }
+    .wildlife-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,9,8,0.8) 0%, transparent 60%);
+    }
+    .wildlife-main-label {
+      position: absolute;
+      bottom: 30px; left: 30px;
+    }
+    .wildlife-main-label h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px; color: #fff;
+    }
+    .wildlife-main-label span {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 11px; letter-spacing: 3px;
+      color: rgba(245,240,232,0.5);
+      text-transform: uppercase;
+    }
+ 
+    /* ── FOOTER ── */
+    .footer {
+      position: relative;
+      overflow: hidden;
+      background: #0a0e0c;
+    }
+ 
+    /* Illustrated forest scene */
+    .footer-scene {
+      width: 100%;
+      display: block;
+    }
+ 
+    .footer-body {
+      position: relative;
+      background: #0a0e0c;
+      padding: 52px 80px 0;
+    }
+ 
+    .footer-columns {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(245,240,232,0.08);
+    }
+ 
+    .footer-brand{
+    .footer-brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+    }
+    .footer-brand-tagline {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .footer-brand-desc {
+      font-size: 14px;
+      line-height: 1.8;
+      color: rgba(245,240,232,0.45);
+      font-style: italic;
+      margin-bottom: 24px;
+      max-width: 300px;
+    }
+    .footer-contact-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      margin-bottom: 10px;
+    }
+    .footer-contact-icon {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,169,110,0.3);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .footer-contact-icon svg { width: 13px; height: 13px; stroke: var(--gold); fill: none; }
+    .footer-contact-text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.5px;
+      color: rgba(245,240,232,0.6);
+    }
+    .footer-contact-text a {
+      color: rgba(245,240,232,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-contact-text a:hover { color: var(--gold); }
+ 
+    .footer-col-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 3px;
+      color: var(--cream);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(201,169,110,0.2);
+    }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 10px; }
+    .footer-links a {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 13px; font-weight: 400;
+      letter-spacing: 1px;
+      color: rgba(245,240,232,0.45);
+      text-decoration: none;
+      transition: color 0.2s, padding-left 0.2s;
+      display: inline-block;
+    }
+    .footer-links a:hover {
+      color: var(--gold);
+      padding-left: 4px;
+    }
+ 
+    .footer-socials {
+      display: flex; gap: 10px;
+      margin-top: 20px;
+    }
+    .social-btn {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(245,240,232,0.2);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      text-decoration: none;
+    }
+    .social-btn svg { width: 14px; height: 14px; fill: rgba(245,240,232,0.5); transition: fill 0.2s; }
+    .social-btn:hover { border-color: var(--gold); background: rgba(201,169,110,0.1); }
+    .social-btn:hover svg { fill: var(--gold); }
+ 
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0 28px;
+    }
+    .footer-bottom-left {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 1px;
+      color: rgba(245,240,232,0.25);
+    }
+    .footer-bottom-links {
+      display: flex; gap: 24px;
+    }
+    .footer-bottom-links a {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 1.5px;
+      color: rgba(245,240,232,0.25);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .footer-bottom-links a:hover { color: var(--gold); }
+    .footer-bottom-right {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 11px;
+      color: rgba(245,240,232,0.2);
+      letter-spacing: 0.5px;
+    }
+  </style>
 </head>
 <body>
-
+ 
 <nav class="navbar">
-    <div class="nav-left">
-        <div class="nav-item">
-            <button class="nav-btn">MORE ▼</button>
-            <div class="dropdown simple-dropdown">
-                <div class="dropdown-content-simple">
-                    <p>ABOUT</p>
-                    <p>SERVICES</p>
-                    <p>CONTACT</p>
-                    <p>EXPLORE MORE</p>
-                </div>
-            </div>
+  <div class="nav-left">
+    <div class="nav-item">
+      <button class="nav-btn">MORE ▾</button>
+      <div class="dropdown simple-dropdown">
+        <div class="dropdown-content-simple">
+          <a href="#">About</a>
+          <a href="#">Services</a>
+          <a href="contact.html">Contact</a>
+          <a href="#">Explore More</a>
         </div>
+      </div>
     </div>
-
-    <div class="logo-area">
-        <img src="img/logo.png" alt="Logo" class="main-logo">
-    </div>
-
-    <div class="nav-right">
-        <div class="nav-links">
-            <div class="nav-item">
-                <button class="nav-btn">ABOUT ▼</button>
-                <div class="dropdown mega-dropdown">
-                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="Nature">
-                    <div class="mega-content">
-                        <h3>ABOUT US</h3>
-                        <p>"Welcome to the heart of Pakistan's natural heritage. Our National Park is a sanctuary dedicated to preserving the majestic landscapes and diverse wildlife of this great nation. From the soaring peaks of the Himalayas to the lush green valleys, we provide a gateway for explorers to connect with nature in its purest form. Our mission is to protect these ecological wonders while sharing the 'Story of Pakistan' with every visitor, ensuring that our natural legacy remains vibrant for generations to come."</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="nav-item">
-                <button class="nav-btn">SERVICES ▼</button>
-                <div class="dropdown mega-dropdown">
-                    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" alt="Places">
-                    <div class="mega-content">
-                        <h3>Our Services</h3>
-                        <p>"We offer a range of premium services designed to make your wilderness experience unforgettable. Our services include guided eco-tours, professional wildlife photography expeditions, and secure camping facilities in the most scenic spots of the park. Whether you are looking for an educational 'Digital Field Trip' or a rugged mountain trek, our expert team is here to ensure your journey through Pakistan's wilderness is safe, informative, and deeply inspiring."</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="nav-item">
-                <button class="nav-btn">CONTACT ▼</button>
-                <div class="dropdown mega-dropdown">
-                    <img src="https://images.unsplash.com/photo-1472396961693-142e6e269027" alt="History">
-                    <div class="mega-content">
-                        <h3>Contact Us</h3>
-                        <p>"Have questions about your next adventure or want to learn more about our conservation efforts? We are here to help. Whether you're planning a visit to explore our 'Hidden Pathways' or need information on park permits, our dedicated support team is just a message away. Reach out to us to start your journey into the wild, and let us help you experience the breathtaking beauty of Pakistan's national treasures firsthand."</p>
-                    </div>
-                </div>
-            </div>
+  </div>
+ 
+  <div class="logo-area">
+    <img src="img/logo.png" alt="National Park Pakistan Logo" class="main-logo"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="logo-placeholder" style="display:none;">NATL<br>PARK</div>
+  </div>
+ 
+  <div class="nav-right">
+    <div class="nav-links">
+      <div class="nav-item">
+        <button class="nav-btn">ABOUT ▾</button>
+        <div class="dropdown mega-dropdown">
+          <div class="mega-img-wrap">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Pakistan landscape">
+          </div>
+          <div class="mega-content">
+            <p class="mega-label">Our story</p>
+            <h3>Heart of Pakistan's<br>Natural Heritage</h3>
+            <p>A sanctuary dedicated to preserving the majestic landscapes and diverse wildlife — from the soaring peaks of the Himalayas to the lush green valleys.</p>
+            <span class="mega-cta">Discover more →</span>
+          </div>
         </div>
-
-        <div class="right-actions">
-            <div class="search-box" id="searchBox">
-                <input type="text" id="searchInput" placeholder="Search..." />
-                <span class="search-btn" onclick="toggleSearch()">SEARCH ⌕</span>
-            </div>
+      </div>
+ 
+      <div class="nav-item">
+        <button class="nav-btn">SERVICES ▾</button>
+        <div class="dropdown mega-dropdown">
+          <div class="mega-img-wrap">
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" alt="Guided tours">
+          </div>
+          <div class="mega-content">
+            <p class="mega-label">What we offer</p>
+            <h3>Unforgettable<br>Wilderness Experiences</h3>
+            <p>Guided eco-tours, wildlife photography expeditions, digital field trips, and secure camping in the most scenic spots of the park.</p>
+            <span class="mega-cta">View services →</span>
+          </div>
         </div>
+      </div>
+ 
+      <div class="nav-item">
+    <a href="contact.html">
+  <button class="nav-btn">CONTACT ▾</button>
+</a>
+        <div class="dropdown mega-dropdown">
+          <div class="mega-img-wrap">
+            <img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=600&q=80" alt="Wildlife">
+          </div>
+          <div class="mega-content">
+            <p class="mega-label">Get in touch</p>
+            <h3>Plan Your<br>Next Adventure</h3>
+            <p>Questions about permits, group bookings, or conservation efforts? Our dedicated team is ready to guide you into the wild.</p>
+            <span class="mega-cta">Contact us →</span>
+          </div>
+        </div>
+      </div>
     </div>
+ 
+    <div class="search-wrap">
+      <input type="text" id="searchInput" placeholder="Search..." />
+      <button class="search-btn" onclick="toggleSearch()">Search ⌕</button>
+    </div>
+  </div>
 </nav>
-
+ 
+<!-- HERO -->
 <div class="hero-section">
-    <div class="hero-content">
-        <h1>NATIONAL PARK</h1>
-        <p class="subtitle">THE STORY OF PAKISTAN</p>
-        <div class="divider"></div>
-        <img src="img/logo.png" alt="Middle Logo" class="mid-logo">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Pakistan · Est. 2024</p>
+    <h1>NATIONAL <span>PARK</span></h1>
+    <p class="subtitle">The Story of Pakistan</p>
+    <div class="hero-divider">
+      <span></span><i></i><span></span>
     </div>
+    <img src="img/logo.png" alt="Park emblem" class="hero-mid-logo"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+    <div class="hero-logo-placeholder" style="display:none;">NATL<br>PARK<br>PK</div>
+  </div>
+  <div class="scroll-cue">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
 </div>
-
+ 
+<!-- EXPLORE SECTION -->
+<section class="explore-section">
+  <div class="explore-bg"></div>
+  <div class="explore-overlay"></div>
+ 
+  <div class="explore-tabs">
+    <a class="explore-tab active" href="#">Peaks</a>
+    <a class="explore-tab" href="#">Valleys</a>
+    <a class="explore-tab" href="#">Lakes</a>
+    <a class="explore-tab" href="#">Forests</a>
+    <a class="explore-tab" href="#">Wildlife</a>
+  </div>
+ 
+  <div class="explore-nums">
+    <div class="explore-num">01</div>
+    <div class="explore-num">02</div>
+    <div class="explore-num active">03</div>
+    <div class="explore-num">04</div>
+    <div class="explore-num">05</div>
+  </div>
+ 
+  <div style="position:relative;z-index:2;width:100%;">
+    <div class="explore-content">
+      <p class="section-eyebrow" style="margin-bottom:12px;">Discover Pakistan</p>
+      <h2>VISIT<br><span>KARAKORUM</span></h2>
+    </div>
+ 
+    <div class="explore-desc-row">
+      <div class="explore-desc">
+        <p>The Karakoram Range is home to K2, the world's second-highest peak. A haven for mountaineers and trekkers seeking the ultimate challenge in raw, unspoiled terrain.</p>
+        <a class="swipe-cta" href="#">Explore →</a>
+      </div>
+      <div class="explore-desc">
+        <p>Hunza Valley's terraced farms and ancient forts sit beneath a crown of glaciers, offering a rare blend of culture and wilderness found nowhere else on Earth.</p>
+      </div>
+      <div class="explore-desc">
+        <p>The Fairy Meadows, nestled below Nanga Parbat, offer camping grounds with one of the most dramatic mountain backdrops on the planet — untouched and unforgettable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- DESTINATIONS GRID -->
+<section class="destinations-section">
+  <div class="section-header">
+    <p class="section-eyebrow" style="text-align:center;">Top Destinations</p>
+    <h2 class="section-title" style="text-align:center;">Find your <span>favourite</span> tour</h2>
+    <div class="gold-line"></div>
+    <p>From soaring peaks to ancient valleys — Pakistan's national parks hold some of the world's most breathtaking natural wonders.</p>
+  </div>
+ 
+  <div class="dest-grid">
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80" alt="K2 Peak">
+      <div class="dest-card-overlay"></div>
+      <div class="dest-card-content">
+        <div class="dest-rank">1st place</div>
+        <div class="dest-name">K2 Base Camp</div>
+        <div class="dest-sub">Karakoram Range</div>
+      </div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=600&q=80" alt="Hunza Valley">
+      <div class="dest-card-overlay"></div>
+      <div class="dest-card-content">
+        <div class="dest-rank">2nd place</div>
+        <div class="dest-name">Hunza Valley</div>
+        <div class="dest-sub">Gilgit-Baltistan</div>
+      </div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80" alt="Fairy Meadows">
+      <div class="dest-card-overlay"></div>
+      <div class="dest-card-content">
+        <div class="dest-rank">3rd place</div>
+        <div class="dest-name">Fairy Meadows</div>
+        <div class="dest-sub">Nanga Parbat</div>
+      </div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=600&q=80" alt="Deosai Plains">
+      <div class="dest-card-overlay"></div>
+      <div class="dest-card-content">
+        <div class="dest-rank">4th place</div>
+        <div class="dest-name">Deosai Plains</div>
+        <div class="dest-sub">World's Highest Plateau</div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- EXPERIENCE SECTION -->
+<section class="experience-section">
+  <div class="exp-grid">
+    <div class="exp-img-wrap">
+      <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=900&q=80" alt="Mountain experience">
+      <div class="exp-img-badge">
+        <strong>25+</strong>
+        Years of<br>Conservation
+      </div>
+    </div>
+    <div class="exp-text">
+      <p class="section-eyebrow">Our Heritage</p>
+      <h2 class="section-title">Travel and <span>Enjoy</span><br>Your Journey</h2>
+      <div class="gold-line left"></div>
+      <p>Pakistan's national parks stretch across five ecological zones — from arctic tundra and alpine meadows to subtropical forests and coastal mangroves — offering an unrivalled diversity of landscapes and life.</p>
+      <p>Every trail tells a story. Every summit reveals a world beyond words. Come prepared to be transformed.</p>
+      <div class="exp-stats">
+        <div>
+          <div class="exp-stat-num">30+</div>
+          <div class="exp-stat-label">National Parks</div>
+        </div>
+        <div>
+          <div class="exp-stat-num">660+</div>
+          <div class="exp-stat-label">Bird Species</div>
+        </div>
+        <div>
+          <div class="exp-stat-num">5,200m</div>
+          <div class="exp-stat-label">Max Altitude</div>
+        </div>
+      </div>
+      <a class="btn-primary" href="#">Plan Your Visit →</a>
+    </div>
+  </div>
+</section>
+ 
+<!-- WILDLIFE / VIDEO SECTION -->
+<section class="wildlife-section">
+  <div class="wildlife-header">
+    <div>
+      <p class="section-eyebrow">Wild Encounters</p>
+      <h2 class="section-title">Pakistan's <span>Wildlife</span></h2>
+    </div>
+    <div class="wildlife-header-right">
+      <p>From the elusive snow leopard to the majestic Marco Polo sheep — Pakistan's mountains shelter creatures found nowhere else on Earth.</p>
+    </div>
+  </div>
+ 
+  <div class="wildlife-grid">
+    <div class="wildlife-main">
+      <img src="https://images.unsplash.com/photo-1474511320723-9a56873867b5?auto=format&fit=crop&w=1200&q=80" alt="Wildlife">
+      <div class="wildlife-overlay"></div>
+      <div class="wildlife-play">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
+      </div>
+      <div class="wildlife-main-label">
+        <h3>Into the Wild</h3>
+        <span>Watch the film</span>
+      </div>
+    </div>
+    <div class="wildlife-side">
+      <div class="wildlife-card">
+        <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=700&q=80" alt="Snow Leopard territory">
+        <div class="wildlife-overlay"></div>
+        <div class="wildlife-card-label">
+          <span>Featured</span>
+          <h4>Snow Leopard Territory</h4>
+        </div>
+      </div>
+      <div class="wildlife-card">
+        <img src="https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?auto=format&fit=crop&w=700&q=80" alt="Himalayan Birds">
+        <div class="wildlife-overlay"></div>
+        <div class="wildlife-card-label">
+          <span>Featured</span>
+          <h4>Himalayan Bird Life</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer class="footer">
+ 
+  <!-- Illustrated forest scene SVG -->
+  <svg class="footer-scene" viewBox="0 0 1440 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax slice">
+    <!-- Sky gradient -->
+    <defs>
+      <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#d4e8c2"/>
+        <stop offset="100%" stop-color="#8fba7a"/>
+      </linearGradient>
+    </defs>
+    <rect width="1440" height="280" fill="url(#skyGrad)"/>
+ 
+    <!-- Distant mountains -->
+    <polygon points="0,180 120,60 240,140 360,40 480,130 600,20 720,110 840,30 960,120 1080,50 1200,140 1320,70 1440,160 1440,280 0,280" fill="#6a9e5e" opacity="0.5"/>
+    <polygon points="0,200 100,100 200,160 320,80 440,150 560,60 680,140 800,70 920,150 1040,90 1160,160 1280,100 1440,180 1440,280 0,280" fill="#4f7a44" opacity="0.7"/>
+ 
+    <!-- Mid trees -->
+    <g fill="#2d5426">
+      <!-- left cluster -->
+      <polygon points="30,280 60,160 90,280"/>
+      <polygon points="55,280 90,140 125,280"/>
+      <polygon points="80,280 118,155 156,280"/>
+      <polygon points="130,280 165,120 200,280"/>
+      <polygon points="160,280 200,145 240,280"/>
+      <polygon points="200,280 240,110 280,280"/>
+      <!-- right cluster -->
+      <polygon points="1200,280 1235,130 1270,280"/>
+      <polygon points="1240,280 1278,145 1316,280"/>
+      <polygon points="1280,280 1318,120 1356,280"/>
+      <polygon points="1320,280 1355,140 1390,280"/>
+      <polygon points="1360,280 1395,155 1430,280"/>
+      <polygon points="1390,280 1420,130 1450,280"/>
+    </g>
+ 
+    <!-- Watch tower -->
+    <g fill="#1e3d1a">
+      <!-- legs -->
+      <rect x="696" y="140" width="4" height="110"/>
+      <rect x="740" y="140" width="4" height="110"/>
+      <rect x="694" y="140" width="55" height="3"/>
+      <rect x="696" y="180" width="48" height="3"/>
+      <!-- diagonal braces -->
+      <line x1="700" y1="140" x2="744" y2="250" stroke="#1e3d1a" stroke-width="2"/>
+      <line x1="744" y1="140" x2="700" y2="250" stroke="#1e3d1a" stroke-width="2"/>
+      <!-- cabin -->
+      <rect x="688" y="108" width="64" height="36"/>
+      <!-- roof -->
+      <polygon points="684,110 720,88 756,110" fill="#162e12"/>
+      <!-- window -->
+      <rect x="706" y="116" width="12" height="14" fill="#3a6e30" opacity="0.7"/>
+      <rect x="722" y="116" width="12" height="14" fill="#3a6e30" opacity="0.7"/>
+    </g>
+ 
+    <!-- Cable lines from tower -->
+    <line x1="720" y1="108" x2="400" y2="220" stroke="#1e3d1a" stroke-width="1.2" opacity="0.5"/>
+    <line x1="720" y1="108" x2="1050" y2="210" stroke="#1e3d1a" stroke-width="1.2" opacity="0.5"/>
+ 
+    <!-- Birds -->
+    <g fill="none" stroke="#1e3d1a" stroke-width="1.2">
+      <path d="M820,75 Q824,71 828,75"/>
+      <path d="M834,68 Q838,64 842,68"/>
+      <path d="M845,78 Q849,74 853,78"/>
+    </g>
+ 
+    <!-- Foreground dark trees -->
+    <g fill="#0f2410">
+      <polygon points="-10,280 30,175 70,280"/>
+      <polygon points="20,280 65,150 110,280"/>
+      <polygon points="60,280 108,160 156,280"/>
+      <polygon points="100,280 152,130 204,280"/>
+      <polygon points="145,280 200,145 255,280"/>
+      <polygon points="1185,280 1238,145 1291,280"/>
+      <polygon points="1230,280 1283,130 1336,280"/>
+      <polygon points="1275,280 1325,160 1375,280"/>
+      <polygon points="1320,280 1370,148 1420,280"/>
+      <polygon points="1380,280 1418,170 1456,280"/>
+    </g>
+ 
+    <!-- Dark ground -->
+    <rect x="0" y="250" width="1440" height="30" fill="#0a0e0c"/>
+  </svg>
+ 
+  <div class="footer-body">
+    <div class="footer-columns">
+ 
+      <!-- Brand column -->
+      <div class="footer-brand">
+        <div class="footer-brand-name">National Park</div>
+        <div class="footer-brand-tagline">Pakistan · Est. 2024</div>
+        <p class="footer-brand-desc">A sanctuary dedicated to preserving the wild landscapes and rich biodiversity of Pakistan — from the Karakoram peaks to the mangroves of Sindh.</p>
+ 
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon">
+            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="footer-contact-text">Islamabad, Federal Capital Territory, Pakistan</div>
+        </div>
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon">
+            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 2.84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 17.92z"/></svg>
+          </div>
+          <div class="footer-contact-text">
+            <a href="tel:+92315482 9170">+92 315 4829 170</a>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon">
+            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="footer-contact-text">
+            <a href="mailto:info@nationalparkpk.gov.pk">info@nationalparkpk.gov.pk</a>
+          </div>
+        </div>
+ 
+        <div class="footer-socials">
+          <a class="social-btn" href="#" title="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M16 2H8C4.69 2 2 4.69 2 8v8c0 3.31 2.69 6 6 6h8c3.31 0 6-2.69 6-6V8c0-3.31-2.69-6-6-6zm4 14c0 2.21-1.79 4-4 4H8c-2.21 0-4-1.79-4-4V8c0-2.21 1.79-4 4-4h8c2.21 0 4 1.79 4 4v8zm-8-9a5 5 0 100 10A5 5 0 0012 7zm0 8a3 3 0 110-6 3 3 0 010 6zm5.5-9a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"/></svg>
+          </a>
+          <a class="social-btn" href="#" title="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a class="social-btn" href="#" title="Twitter / X">
+            <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+          </a>
+          <a class="social-btn" href="#" title="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
+          </a>
+        </div>
+      </div>
+ 
+      <!-- Links col 1 -->
+      <div>
+        <div class="footer-col-title">Links</div>
+        <ul class="footer-links">
+          <li><a href="#">About the Park</a></li>
+          <li><a href="#">Conservation</a></li>
+          <li><a href="#">Wildlife Guide</a></li>
+          <li><a href="#">Park Map</a></li>
+          <li><a href="#">News & Updates</a></li>
+          <li><a href="#">Research</a></li>
+        </ul>
+      </div>
+ 
+      <!-- Links col 2 -->
+      <div>
+        <div class="footer-col-title">Links</div>
+        <ul class="footer-links">
+          <li><a href="#">Trekking Permits</a></li>
+          <li><a href="#">Guided Tours</a></li>
+          <li><a href="#">Camping Sites</a></li>
+          <li><a href="#">Photography Tours</a></li>
+          <li><a href="#">Group Bookings</a></li>
+          <li><a href="#">School Trips</a></li>
+        </ul>
+      </div>
+ 
+      <!-- Links col 3 -->
+      <div>
+        <div class="footer-col-title">Links</div>
+        <ul class="footer-links">
+          <li><a href="#">EULA</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Accessibility</a></li>
+          <li><a href="#">Support Forum</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+    </div>
+ 
+    <div class="footer-bottom">
+      <div class="footer-bottom-left">© 2024 National Park Pakistan. All rights reserved.</div>
+      <div class="footer-bottom-links">
+        <a href="#">EULA</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+      </div>
+      <div class="footer-bottom-right">Designed & developed for National Park PK</div>
+    </div>
+  </div>
+</footer>
+ 
 <script>
-function toggleSearch() {
-    document.getElementById("searchBox").classList.toggle("active");
-}
+  function toggleSearch() {
+    document.getElementById('searchInput').classList.toggle('open');
+  }
 </script>
-
+ 
 </body>
 </html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Us</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #0b0b14;
+    color: #fff;
+    overflow-x: hidden;
+  }
+
+  /* HERO SECTION */
+  .hero {
+    min-height: 100vh;
+    padding: 100px 0 60px;
+    background: radial-gradient(circle at top left, rgba(255,193,7,0.1), transparent 60%),
+                linear-gradient(180deg, #0b0b14 60%, #11111c);
+    position: relative;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url('[transparenttextures.com](https://www.transparenttextures.com/patterns/diagonal-stripes-light.png)');
+    opacity: 0.05;
+  }
+
+  .title {
+    font-size: 4rem;
+    font-weight: 300;
+    color: #f6c44f;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+
+  .subtitle {
+    max-width: 650px;
+    text-align: center;
+    margin: 15px auto 50px;
+    color: #c7c7c7;
+  }
+
+  /* INFO BOXES */
+  .info-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 18px;
+    padding: 35px;
+    text-align: center;
+    height: 100%;
+    transition: 0.3s;
+    backdrop-filter: blur(12px);
+  }
+
+  .info-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(246,196,79,0.6);
+    box-shadow: 0 8px 26px rgba(246,196,79,0.15);
+  }
+
+  .info-card h5 {
+    color: #f6c44f;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+
+  .info-card p {
+    color: #d2d2d2;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* CONTACT FORM */
+  .contact-area {
+    margin-top: 80px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 24px;
+    padding: 60px 40px;
+    backdrop-filter: blur(10px);
+  }
+
+  .contact-form {
+    background: rgba(0,0,0,0.3);
+    border-radius: 18px;
+    padding: 30px;
+  }
+
+  .contact-form h3 {
+    color: #f6c44f;
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+
+  .contact-form label {
+    font-size: 15px;
+    margin-bottom: 6px;
+    color: #ccc;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 14px;
+    border: none;
+    border-radius: 12px;
+    background: #161622;
+    color: #fff;
+  }
+
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    outline: 2px solid #f6c44f;
+  }
+
+  .contact-form button {
+    width: 100%;
+    background: #f6c44f;
+    color: #111;
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: 0.3s;
+  }
+
+  .contact-form button:hover {
+    background: #ffd86b;
+  }
+
+  .side-text {
+    padding: 20px 30px;
+  }
+
+  .side-text h2 {
+    color: #f6c44f;
+    font-size: 2.4rem;
+    font-weight: 300;
+  }
+
+  .side-text p {
+    color: #c7c7c7;
+    margin-top: 18px;
+    line-height: 1.8;
+  }
+
+  .error {
+    color: #ff6b6b;
+    font-size: 13px;
+    margin: -8px 0 10px;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 40px 0 20px;
+    margin-top: 80px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    text-align: center;
+    color: #999;
+    font-size: 14px;
+  }
+
+  footer a {
+    color: #f6c44f;
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .title {
+      font-size: 2.8rem;
+    }
+    .side-text {
+      text-align: center;
+      padding: 20px 0;
+    }
+    .side-text h2 {
+      font-size: 2rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="container position-relative" style="z-index:2;">
+    <h1 class="title">Contact Us</h1>
+    <p class="subtitle">We're here to collaborate, connect, and create something extraordinary together.</p>
+
+    <div class="row g-4 mt-5">
+      <div class="col-md-4">
+        <div class="info-card">
+          <h5>📍 Office Location</h5>
+          <p>Karachi, Pakistan<br>Block 16, Azizabad</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="info-card">
+          <h5>⏰ Working Hours</h5>
+          <p>Mon–Fri: 10 AM – 6 PM<br>Sat: 10 AM – 2 PM</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="info-card">
+          <h5>📞 Communication</h5>
+          <p>+92 300 1234567<br>support@example.com</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-area mt-5">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <form class="contact-form" id="contactForm">
+            <h3>Send a Message</h3>
+            <label>Name</label>
+            <input type="text" id="name" required>
+            <div class="error" id="nameError"></div>
+
+            <label>Email</label>
+            <input type="email" id="email" required>
+            <div class="error" id="emailError"></div>
+
+            <label>Message</label>
+            <textarea id="message" rows="5" required></textarea>
+            <div class="error" id="messageError"></div>
+
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
+        <div class="col-lg-6 side-text">
+          <h2>Let's Talk</h2>
+          <p>
+            Have a question or idea? Let’s make it happen.  
+            Our team is ready to help turn your vision into something extraordinary.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      © 2026 All Rights Reserved | Designed for Your Project
+    </footer>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('contactForm');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    document.querySelectorAll('.error').forEach(el => el.textContent = '');
+    let valid = true;
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    if (name.length < 2) {
+      document.getElementById('nameError').textContent = 'Name must be at least 2 characters';
+      valid = false;
+    }
+    if (!email.includes('@') || !email.includes('.')) {
+      document.getElementById('emailError').textContent = 'Enter a valid email';
+      valid = false;
+    }
+    if (message.length < 10) {
+      document.getElementById('messageError').textContent = 'Message must be at least 10 characters';
+      valid = false;
+    }
+
+    if (valid) {
+      alert('Thank you for reaching out! We’ll get back to you soon.');
+      form.reset();
+    }
+  });
+</script>
+
+</body>
+</html>
