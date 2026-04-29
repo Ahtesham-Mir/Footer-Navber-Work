@@ -80,7 +80,7 @@
     }
     .nav-btn:hover, .nav-item:hover .nav-btn { color: var(--gold); }
  
-    .nav-links { display: flex; }
+    .nav-links  { display: flex;}
     .nav-item { position: relative; }
  
     .dropdown {
@@ -383,10 +383,11 @@
     /* ── EXPLORE SECTION (like East Luwu hero) ── */
     .explore-section {
       position: relative;
-      height: 85vh;
+      height: 100vh;
       display: flex;
       align-items: flex-end;
       overflow: hidden;
+      padding-bottom: 120px;
     }
     .explore-bg {
       position: absolute; inset: 0;
@@ -403,6 +404,7 @@
       position: relative; z-index: 2;
       padding: 0 80px 80px;
       max-width: 700px;
+      padding-bottom: 40px;
     }
     .explore-content h2 {
       font-family: 'Playfair Display', serif;
@@ -458,7 +460,7 @@
     }
     .explore-num.active { color: var(--burnt-light); font-size: 22px; }
     .explore-desc-row {
-      position: absolute; bottom: 0; left: 0; right: 0;
+      position: relative; bottom: 0; left: 0; right: 0;
       z-index: 2;
       background: rgba(10,9,8,0.85);
       display: grid;
@@ -905,19 +907,18 @@
  
 <nav class="navbar">
   <div class="nav-left">
-    <div class="nav-item">
-      <button class="nav-btn">MORE ▾</button>
-      <div class="dropdown simple-dropdown">
-        <div class="dropdown-content-simple">
-          <a href="#">About</a>
-          <a href="#">Services</a>
-          <a href="contact.html">Contact</a>
-          <a href="#">Explore More</a>
-        </div>
+  <div class="nav-item">
+    <button class="nav-btn">MORE ▾</button>
+    <div class="dropdown simple-dropdown">
+      <div class="dropdown-content-simple">
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="contact.html">Contact</a>
+        <a href="#">Explore More</a>
       </div>
     </div>
   </div>
- 
+</div>
   <div class="logo-area">
     <img src="img/logo.png" alt="National Park Pakistan Logo" class="main-logo"
          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">

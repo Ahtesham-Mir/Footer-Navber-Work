@@ -1,294 +1,530 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact | Us</title>
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | National Park Pakistan</title>
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    background: #0b0b14;
-    color: #fff;
-    overflow-x: hidden;
-  }
-
-  /* HERO SECTION */
-  .hero {
-    min-height: 100vh;
-    padding: 100px 0 60px;
-    background: radial-gradient(circle at top left, rgba(255,193,7,0.1), transparent 60%),
-                linear-gradient(180deg, #0b0b14 60%, #11111c);
-    position: relative;
-  }
-
-  .hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: url('[transparenttextures.com](https://www.transparenttextures.com/patterns/diagonal-stripes-light.png)');
-    opacity: 0.05;
-  }
-
-  .title {
-    font-size: 4rem;
-    font-weight: 300;
-    color: #f6c44f;
-    text-align: center;
-    letter-spacing: 1px;
-  }
-
-  .subtitle {
-    max-width: 650px;
-    text-align: center;
-    margin: 15px auto 50px;
-    color: #c7c7c7;
-  }
-
-  /* INFO BOXES */
-  .info-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 18px;
-    padding: 35px;
-    text-align: center;
-    height: 100%;
-    transition: 0.3s;
-    backdrop-filter: blur(12px);
-  }
-
-  .info-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(246,196,79,0.6);
-    box-shadow: 0 8px 26px rgba(246,196,79,0.15);
-  }
-
-  .info-card h5 {
-    color: #f6c44f;
-    font-weight: 500;
-    margin-bottom: 12px;
-  }
-
-  .info-card p {
-    color: #d2d2d2;
-    margin: 0;
-    line-height: 1.6;
-  }
-
-  /* CONTACT FORM */
-  .contact-area {
-    margin-top: 80px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 24px;
-    padding: 60px 40px;
-    backdrop-filter: blur(10px);
-  }
-
-  .contact-form {
-    background: rgba(0,0,0,0.3);
-    border-radius: 18px;
-    padding: 30px;
-  }
-
-  .contact-form h3 {
-    color: #f6c44f;
-    margin-bottom: 20px;
-    font-weight: 400;
-  }
-
-  .contact-form label {
-    font-size: 15px;
-    margin-bottom: 6px;
-    color: #ccc;
-  }
-
-  .contact-form input,
-  .contact-form textarea {
-    width: 100%;
-    padding: 14px;
-    margin-bottom: 14px;
-    border: none;
-    border-radius: 12px;
-    background: #161622;
-    color: #fff;
-  }
-
-  .contact-form input:focus,
-  .contact-form textarea:focus {
-    outline: 2px solid #f6c44f;
-  }
-
-  .contact-form button {
-    width: 100%;
-    background: #f6c44f;
-    color: #111;
-    border: none;
-    padding: 14px;
-    border-radius: 12px;
-    font-weight: 600;
-    transition: 0.3s;
-  }
-
-  .contact-form button:hover {
-    background: #ffd86b;
-  }
-
-  .side-text {
-    padding: 20px 30px;
-  }
-
-  .side-text h2 {
-    color: #f6c44f;
-    font-size: 2.4rem;
-    font-weight: 300;
-  }
-
-  .side-text p {
-    color: #c7c7c7;
-    margin-top: 18px;
-    line-height: 1.8;
-  }
-
-  .error {
-    color: #ff6b6b;
-    font-size: 13px;
-    margin: -8px 0 10px;
-  }
-
-  /* FOOTER */
-  footer {
-    padding: 40px 0 20px;
-    margin-top: 80px;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    text-align: center;
-    color: #999;
-    font-size: 14px;
-  }
-
-  footer a {
-    color: #f6c44f;
-    text-decoration: none;
-  }
-
-  footer a:hover {
-    text-decoration: underline;
-  }
-
-  @media (max-width: 768px) {
-    .title {
-      font-size: 2.8rem;
+    :root {
+      --bg: #0a0a10;
+      --bg-2: #0f0f17;
+      --surface: #14141d;
+      --surface-2: #1a1a25;
+      --border: rgba(255, 255, 255, 0.07);
+      --border-strong: rgba(255, 255, 255, 0.12);
+      --text: #ececf1;
+      --muted: #8e8e9b;
+      --muted-2: #6e6e7c;
+      --accent: #f3c14a;
+      --accent-2: #ffd770;
+      --accent-soft: rgba(243, 193, 74, 0.12);
     }
-    .side-text {
+
+    html, body { background: var(--bg); }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(243, 193, 74, 0.06), transparent 45%),
+        radial-gradient(circle at 100% 30%, rgba(243, 193, 74, 0.04), transparent 50%),
+        var(--bg);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ============ HERO / HEADER ============ */
+    .contact-hero {
+      padding: 110px 0 50px;
       text-align: center;
-      padding: 20px 0;
     }
-    .side-text h2 {
-      font-size: 2rem;
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 22px;
     }
-  }
-</style>
+
+    .contact-hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 400;
+      color: var(--accent);
+      letter-spacing: -0.5px;
+      line-height: 1.15;
+      margin-bottom: 22px;
+    }
+
+    .contact-hero p.lead {
+      max-width: 620px;
+      margin: 0 auto 28px;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .divider {
+      width: 70px;
+      height: 2px;
+      background: var(--accent);
+      margin: 0 auto;
+      opacity: 0.7;
+    }
+
+    /* ============ CONTACT GRID ============ */
+    .contact-section { padding: 60px 0 90px; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 28px;
+    }
+
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 38px 34px;
+    }
+
+    .panel-eyebrow {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .panel h2 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .panel .panel-lead {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 28px;
+    }
+
+    /* LEFT — info items */
+    .info-list { display: flex; flex-direction: column; gap: 14px; }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 20px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .info-item:hover {
+      border-color: var(--accent-soft);
+      transform: translateX(2px);
+    }
+
+    .info-icon {
+      flex-shrink: 0;
+      width: 40px; height: 40px;
+      display: grid; place-items: center;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .info-icon svg { width: 18px; height: 18px; }
+
+    .info-text h4 {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .info-text p, .info-text a {
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .info-text a:hover { color: var(--accent); }
+
+    /* RIGHT — form */
+    .field { margin-bottom: 18px; }
+
+    .field label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      padding: 13px 14px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.93rem;
+      transition: border-color 0.2s;
+    }
+
+    .field input::placeholder, .field textarea::placeholder { color: var(--muted-2); }
+
+    .field input:focus, .field textarea:focus, .field select:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .field textarea { resize: vertical; min-height: 130px; }
+
+    .error { display: block; color: #ff7676; font-size: 0.78rem; margin-top: 5px; min-height: 1em; }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(180deg, var(--accent-2), var(--accent));
+      color: #1a1408;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: filter 0.2s, transform 0.1s;
+    }
+
+    .submit-btn:hover { filter: brightness(1.05); }
+    .submit-btn:active { transform: translateY(1px); }
+
+    /* ============ FOOTER ============ */
+    footer.site-footer {
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      padding: 70px 0 30px;
+      margin-top: 40px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 50px;
+    }
+
+    @media (max-width: 900px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+    }
+    @media (max-width: 560px) {
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+
+    .brand-name {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+
+    .brand-desc {
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-style: italic;
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
+
+    .brand-contact { display: flex; flex-direction: column; gap: 10px; }
+
+    .brand-contact div {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.86rem; color: var(--text);
+    }
+
+    .brand-contact .ico {
+      width: 28px; height: 28px;
+      display: grid; place-items: center;
+      border-radius: 50%;
+      border: 1px solid var(--accent-soft);
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .brand-contact .ico svg { width: 12px; height: 12px; }
+
+    .footer-col h5 {
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 22px;
+      text-transform: uppercase;
+    }
+
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+
+    .footer-col a {
+      color: var(--muted);
+      font-size: 0.9rem;
+      transition: color 0.2s, padding-left 0.2s;
+    }
+
+    .footer-col a:hover { color: var(--accent); padding-left: 4px; }
+
+    .footer-bottom {
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted-2);
+      font-size: 0.82rem;
+    }
+
+    .footer-bottom .socials { display: flex; gap: 10px; }
+
+    .footer-bottom .socials a {
+      width: 32px; height: 32px;
+      display: grid; place-items: center;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      transition: all 0.2s;
+    }
+
+    .footer-bottom .socials a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+  </style>
 </head>
 <body>
 
-<section class="hero">
-  <div class="container position-relative" style="z-index:2;">
-    <h1 class="title">Contact Us</h1>
-    <p class="subtitle">We're here to collaborate, connect, and create something extraordinary together.</p>
-
-    <div class="row g-4 mt-5">
-      <div class="col-md-4">
-        <div class="info-card">
-          <h5>📍 Office Location</h5>
-          <p>Karachi, Pakistan<br>Block 16, Azizabad</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="info-card">
-          <h5>⏰ Working Hours</h5>
-          <p>Mon–Fri: 10 AM – 6 PM<br>Sat: 10 AM – 2 PM</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="info-card">
-          <h5>📞 Communication</h5>
-          <p>+92 300 1234567<br>support@example.com</p>
-        </div>
-      </div>
+  <!-- HERO -->
+  <section class="contact-hero">
+    <div class="container">
+      <div class="eyebrow">Contact Us</div>
+      <h1>Let's build something<br />exceptional together</h1>
+      <p class="lead">Have a question, project idea, or partnership request? Send us a message and our team will get back to you shortly.</p>
+      <div class="divider"></div>
     </div>
+  </section>
 
-    <div class="contact-area mt-5">
-      <div class="row align-items-center">
-        <div class="col-lg-6 mb-4 mb-lg-0">
-          <form class="contact-form" id="contactForm">
-            <h3>Send a Message</h3>
-            <label>Name</label>
-            <input type="text" id="name" required>
-            <div class="error" id="nameError"></div>
+  <!-- CONTACT GRID -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
 
-            <label>Email</label>
-            <input type="email" id="email" required>
-            <div class="error" id="emailError"></div>
+        <!-- LEFT: INFO -->
+        <div class="panel">
+          <div class="panel-eyebrow">Reach Us Directly</div>
+          <h2>We're ready to help.</h2>
+          <p class="panel-lead">Whether you need support, want to discuss an idea, or simply prefer to speak with someone first, use the details below to connect with us.</p>
 
-            <label>Message</label>
-            <textarea id="message" rows="5" required></textarea>
-            <div class="error" id="messageError"></div>
+          <div class="info-list">
+            <div class="info-item">
+              <div class="info-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="info-text">
+                <h4>Office Location</h4>
+                <p>Block 16, Azizabad, Karachi, Pakistan</p>
+              </div>
+            </div>
 
-            <button type="submit">Send Message</button>
+            <div class="info-item">
+              <div class="info-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div class="info-text">
+                <h4>Phone Number</h4>
+                <a href="tel:+923001234567">+92 300 1234567</a>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div class="info-text">
+                <h4>Email Address</h4>
+                <a href="mailto:support@example.com">support@example.com</a>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div class="info-text">
+                <h4>Working Hours</h4>
+                <p>Mon–Fri: 10 AM – 6 PM · Sat: 10 AM – 2 PM</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: FORM -->
+        <div class="panel">
+          <div class="panel-eyebrow">Send a Message</div>
+          <h2>Tell us about your request</h2>
+
+          <form id="contactForm" novalidate style="margin-top:8px;">
+            <div class="field">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your full name" />
+              <span class="error" id="nameError"></span>
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" />
+              <span class="error" id="emailError"></span>
+            </div>
+
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Write your message here..."></textarea>
+              <span class="error" id="messageError"></span>
+            </div>
+
+            <button type="submit" class="submit-btn">Send Message</button>
           </form>
         </div>
-        <div class="col-lg-6 side-text">
-          <h2>Let's Talk</h2>
-          <p>
-            Have a question or idea? Let’s make it happen.  
-            Our team is ready to help turn your vision into something extraordinary.
-          </p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <div>
+          <div class="brand-name">National Park</div>
+          <div class="brand-sub">PAKISTAN · EST. 2024</div>
+          <p class="brand-desc">A sanctuary dedicated to preserving the wild landscapes and rich biodiversity of Pakistan — from the Karakoram peaks to the mangroves of Sindh.</p>
+
+          <div class="brand-contact">
+            <div>
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+              Islamabad, Federal Capital Territory, Pakistan
+            </div>
+            <div>
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+              +92 315 4829 170
+            </div>
+            <div>
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+              info@nationalparkpk.gov.pk
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Explore</h5>
+          <ul>
+            <li><a href="about.html">About the Park</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="wildlife.html">Wildlife Guide</a></li>
+            <li><a href="map.html">Park Map</a></li>
+            <li><a href="news.html">News &amp; Updates</a></li>
+            <li><a href="research.html">Research</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Visit</h5>
+          <ul>
+            <li><a href="permits.html">Trekking Permits</a></li>
+            <li><a href="tours.html">Guided Tours</a></li>
+            <li><a href="camping.html">Camping Sites</a></li>
+            <li><a href="photography.html">Photography Tours</a></li>
+            <li><a href="bookings.html">Group Bookings</a></li>
+            <li><a href="school-trips.html">School Trips</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="eula.html">EULA</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms &amp; Conditions</a></li>
+            <li><a href="accessibility.html">Accessibility</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="careers.html">Careers</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 National Park Pakistan. All rights reserved.</div>
+        <div class="socials">
+          <a href="#" aria-label="Twitter"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
         </div>
       </div>
     </div>
+  </footer>
 
-    <footer>
-      © 2026 All Rights Reserved | Designed for Your Project
-    </footer>
-  </div>
-</section>
+  <script>
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let valid = true;
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
 
-<script>
-  const form = document.getElementById('contactForm');
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
+      document.getElementById('nameError').textContent = '';
+      document.getElementById('emailError').textContent = '';
+      document.getElementById('messageError').textContent = '';
 
-    document.querySelectorAll('.error').forEach(el => el.textContent = '');
-    let valid = true;
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const message = document.getElementById('message').value.trim();
+      if (name.length < 2) { document.getElementById('nameError').textContent = 'Please enter your name'; valid = false; }
+      if (!email.includes('@') || !email.includes('.')) { document.getElementById('emailError').textContent = 'Enter a valid email address'; valid = false; }
+      if (message.length < 10) { document.getElementById('messageError').textContent = 'Message must be at least 10 characters'; valid = false; }
 
-    if (name.length < 2) {
-      document.getElementById('nameError').textContent = 'Name must be at least 2 characters';
-      valid = false;
-    }
-    if (!email.includes('@') || !email.includes('.')) {
-      document.getElementById('emailError').textContent = 'Enter a valid email';
-      valid = false;
-    }
-    if (message.length < 10) {
-      document.getElementById('messageError').textContent = 'Message must be at least 10 characters';
-      valid = false;
-    }
-
-    if (valid) {
-      alert('Thank you for reaching out! We’ll get back to you soon.');
-      form.reset();
-    }
-  });
-</script>
-
+      if (valid) {
+        alert("Thank you for reaching out! We'll get back to you soon.");
+        form.reset();
+      }
+    });
+  </script>
 </body>
 </html>
