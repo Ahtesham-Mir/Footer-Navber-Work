@@ -61,3 +61,113 @@ document.addEventListener('DOMContentLoaded', function () {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 });
+
+
+// About Us Js
+// Back to Top button — appears after 400px scroll
+(function () {
+  const btn = document.getElementById('backToTop');
+  if (!btn) return;
+  const toggle = () => {
+    if (window.scrollY > 400) btn.classList.add('show');
+    else btn.classList.remove('show');
+  };
+  window.addEventListener('scroll', toggle, { passive: true });
+  toggle();
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+
+// Search — hidden by default. Click SEARCH button: input slides in.
+// Type + Enter (or click again when open) to run the search.
+(function () {
+  const wrap = document.querySelector('.search-wrap');
+  const input = document.getElementById('searchInput');
+  const btn = document.getElementById('searchBtn');
+  if (!wrap || !btn || !input) return;
+
+  const HL_CLASS = 'search-highlight';
+
+  function clearHighlights() {
+    document.querySelectorAll('mark.' + HL_CLASS).forEach(m => {
+      const parent = m.parentNode;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    });
+  }
+
+  function highlight(term) {
+    if (!term) return null;
+    const regex = new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        const p = node.parentNode;
+        if (!p || ['SCRIPT','STYLE','MARK','INPUT','BUTTON'].includes(p.tagName)) return NodeFilter.FILTER_REJECT;
+        if (p.closest('.navbar') || p.closest('.marquee-bar')) return NodeFilter.FILTER_REJECT;
+        return regex.test(node.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    const nodes = [];
+    let n; while ((n = walker.nextNode())) nodes.push(n);
+    let first = null;
+    nodes.forEach(node => {
+      const frag = document.createDocumentFragment();
+      let lastIdx = 0; const text = node.nodeValue;
+      text.replace(regex, (match, idx) => {
+        frag.appendChild(document.createTextNode(text.slice(lastIdx, idx)));
+        const mark = document.createElement('mark');
+        mark.className = HL_CLASS;
+        mark.textContent = match;
+        if (!first) first = mark;
+        frag.appendChild(mark);
+        lastIdx = idx + match.length;
+      });
+      frag.appendChild(document.createTextNode(text.slice(lastIdx)));
+      node.parentNode.replaceChild(frag, node);
+    });
+    return first;
+  }
+
+  function runSearch() {
+    clearHighlights();
+    const term = input.value.trim();
+    if (!term) return;
+    const first = highlight(term);
+    if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    else alert('No results found for "' + term + '"');
+  }
+
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (!wrap.classList.contains('open')) {
+      // First click: just open the input
+      wrap.classList.add('open');
+      setTimeout(() => input.focus(), 200);
+    } else {
+      // Already open: run search if there's a term, else close
+      if (input.value.trim()) runSearch();
+      else wrap.classList.remove('open');
+    }
+  });
+
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') { e.preventDefault(); runSearch(); }
+    if (e.key === 'Escape') { wrap.classList.remove('open'); clearHighlights(); }
+  });
+
+  // Click outside closes input (if empty)
+  document.addEventListener('click', (e) => {
+    if (!wrap.contains(e.target) && !input.value.trim()) {
+      wrap.classList.remove('open');
+    }
+  });
+})();
+
+// Prevent jump for nav anchor placeholders
+document.querySelectorAll('.navbar a').forEach(a => {
+  a.addEventListener('click', e => {
+    if (a.getAttribute('href') === '#') e.preventDefault();
+  });
+});
