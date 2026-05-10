@@ -662,5 +662,152 @@
     </div>
   </footer>
 
+  <!-- Responsive CSS -->
+  <style>
+    /* Mobile First - Base Styles */
+    @media (max-width: 480px) {
+      body { font-size: 14px; }
+      
+      /* Navbar */
+      .navbar { 
+        padding: 0 16px; 
+        height: 70px;
+        flex-wrap: wrap;
+      }
+      .nav-left, .nav-right { flex: 1; }
+      .logo-area { 
+        position: static; 
+        transform: none;
+        margin: 8px auto;
+      }
+      .main-logo, .center-logo { height: 40px; }
+      .nav-links { display: none; }
+      .search-wrap { 
+        width: 100%; 
+        margin: 8px 0;
+        order: 3;
+      }
+      .search-wrap input { width: 100%; }
+      
+      /* Marquee */
+      .na-marquee { padding: 6px 0; }
+      .marquee { font-size: 12px; }
+      
+      /* Wildlife Section */
+      .wildlife-section { padding: 20px 16px; }
+      .wildlife-grid { grid-template-columns: 1fr; gap: 16px; }
+      .wildlife-card { flex-direction: column; }
+      .wildlife-img { width: 100%; height: 200px; }
+      .wildlife-info { padding: 20px; }
+      
+      /* Footer */
+      .footer { padding: 40px 16px 20px; }
+      .footer-grid { 
+        grid-template-columns: 1fr; 
+        gap: 30px;
+        text-align: center;
+      }
+      .footer-contact { justify-content: center; }
+      .footer-socials { justify-content: center; }
+      .footer-links { text-align: center; }
+      .footer-bottom { 
+        flex-direction: column; 
+        text-align: center;
+        gap: 10px;
+      }
+      
+      /* Back to Top */
+      .back-to-top { 
+        width: 45px; 
+        height: 45px; 
+        right: 16px;
+        bottom: 16px;
+      }
+    }
+
+    /* Small Tablets */
+    @media (min-width: 481px) and (max-width: 768px) {
+      .navbar { padding: 0 24px; }
+      .nav-links { 
+        display: flex; 
+        gap: 15px;
+        font-size: 11px;
+      }
+      .nav-btn { padding: 6px 0; }
+      
+      .wildlife-grid { grid-template-columns: repeat(2, 1fr); }
+      .wildlife-img { height: 180px; }
+      
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* Tablets */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .navbar { padding: 0 32px; }
+      .nav-links { gap: 20px; }
+      
+      .wildlife-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .wildlife-img { height: 200px; }
+      
+      .footer-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* Large Tablets & Small Laptops */
+    @media (min-width: 1025px) and (max-width: 1366px) {
+      .wildlife-grid { grid-template-columns: repeat(3, 1fr); }
+      .wildlife-img { height: 220px; }
+    }
+
+    /* Desktop */
+    @media (min-width: 1367px) and (max-width: 1920px) {
+      .wildlife-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+      .wildlife-img { height: 250px; }
+    }
+
+    /* Large Desktop */
+    @media (min-width: 1921px) {
+      .wildlife-section { max-width: 1400px; margin: 0 auto; }
+      .wildlife-grid { grid-template-columns: repeat(3, 1fr); gap: 30px; }
+      .wildlife-img { height: 280px; }
+    }
+
+    /* Landscape Mobile */
+    @media (max-width: 896px) and (orientation: landscape) {
+      .navbar { height: 60px; }
+      .main-logo, .center-logo { height: 35px; }
+      .wildlife-img { height: 150px; }
+    }
+
+    /* High DPI/Retina Displays */
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      .main-logo, .center-logo { 
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+      }
+    }
+
+    /* Touch Devices */
+    @media (hover: none) and (pointer: coarse) {
+      .nav-btn, .footer-links a, .wildlife-btn {
+        padding: 12px 16px;
+        min-height: 44px;
+        min-width: 44px;
+      }
+      .back-to-top { 
+        width: 50px; 
+        height: 50px; 
+      }
+    }
+
+    /* Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+
 </body>
 </html>
