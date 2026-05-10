@@ -102,7 +102,7 @@
             <p class="mega-label">What we offer</p>
             <h3>Unforgettable<br>Wilderness Experiences</h3>
             <p>Guided eco-tours and unforgettable park adventures.</p>
-            <span class="mega-cta">View services →</span>
+            <a href="services.html" class="mega-cta">Services →</a>
           </div>
         </div>
       </div>
@@ -521,11 +521,11 @@
           <div class="footer-col-title">Links</div>
           <ul class="footer-links">
             <li><a href="about.html">About the Park</a></li>
-            <li><a href="#">Conservation</a></li>
-            <li><a href="explore-more.html">Wildlife Guide</a></li>
-            <li><a href="#">Park Map</a></li>
-            <li><a href="#">News & Updates</a></li>
-            <li><a href="#">Research</a></li>
+            <li><a href="services.html">Conservation</a></li>
+            <li><a href="wildlife-guide.html">Wildlife Guide</a></li>
+            <li><a href="park-map.html">Park Map</a></li>
+            <li><a href="news-updates.html">News & Updates</a></li>
+            <li><a href="research.html">Research</a></li>
           </ul>
         </div>
 
@@ -533,12 +533,12 @@
         <div>
           <div class="footer-col-title">Links</div>
           <ul class="footer-links">
-            <li><a href="#">Trekking Permits</a></li>
-            <li><a href="#">Guided Tours</a></li>
-            <li><a href="#">Camping Sites</a></li>
-            <li><a href="#">Photography Tours</a></li>
-            <li><a href="#">Group Bookings</a></li>
-            <li><a href="#">School Trips</a></li>
+            <li><a href="trekking-permits.html">Trekking Permits</a></li>
+            <li><a href="guided-tours.html">Guided Tours</a></li>
+            <li><a href="camping-sites.html">Camping Sites</a></li>
+            <li><a href="photography-tours.html">Photography Tours</a></li>
+            <li><a href="group-bookings.html">Group Bookings</a></li>
+            <li><a href="school-trips.html">School Trips</a></li>
           </ul>
         </div>
 
@@ -546,12 +546,12 @@
         <div>
           <div class="footer-col-title">Links</div>
           <ul class="footer-links">
-            <li><a href="#">EULA</a></li>
+            <li><a href="eula.html">EULA</a></li>
             <li><a href="Privacy-Policy.html">Privacy Policy</a></li>
-            <li><a href="#">Terms & Conditions</a></li>
-            <li><a href="#">Accessibility</a></li>
+            <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+            <li><a href="accessibility.html">Accessibility</a></li>
             <li><a href="contact.html">Support Forum</a></li>
-            <li><a href="#">Careers</a></li>
+            <li><a href="careers.html">Careers</a></li>
           </ul>
         </div>
       </div>
@@ -559,9 +559,9 @@
       <div class="footer-bottom">
         <div class="footer-bottom-left">© 2024 National Park Pakistan. All rights reserved.</div>
         <div class="footer-bottom-links">
-          <a href="EULA.html">EULA</a>
+          <a href="eula.html">EULA</a>
           <a href="Privacy-Policy.html">Privacy Policy</a>
-          <a href="Terms-Conditions.html">Terms & Conditions</a>
+          <a href="terms-conditions.html">Terms & Conditions</a>
         </div>
         <div class="footer-bottom-right">Designed & developed for National Park PK</div>
       </div>
@@ -588,13 +588,13 @@
       const searchTerm = searchInput.value.toLowerCase().trim();
       
       // Search redirects
-      if (searchTerm === 'k2 base camp') {
+      if (searchTerm === 'k2 base camp' || searchTerm === 'k2') {
         window.location.href = 'k2-base-camp.html';
-      } else if (searchTerm === 'hunza valley') {
+      } else if (searchTerm === 'hunza valley' || searchTerm === 'hunza') {
         window.location.href = 'hunza-valley.html';
-      } else if (searchTerm === 'fairy meadows') {
+      } else if (searchTerm === 'fairy meadows' || searchTerm === 'fairy') {
         window.location.href = 'fairy-meadows.html';
-      } else if (searchTerm === 'deosai') {
+      } else if (searchTerm === 'deosai' || searchTerm === 'deosai plains') {
         window.location.href = 'deosai.html';
       } else {
         // Optional: Show message for no results
@@ -604,6 +604,14 @@
         }, 2000);
       }
     }
+
+  // Add event listeners
+  document.getElementById('searchInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      performSearch();
+    }
+  });
+  document.querySelector('.search-btn').addEventListener('click', performSearch);
   </script>
 
 <!-- Back To Top Button -->

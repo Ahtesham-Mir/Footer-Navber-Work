@@ -297,14 +297,13 @@ body {
   background: transparent;
   border: none;
   border-bottom: 1px solid rgba(201, 169, 110, 0.4);
-  color: var(--cream);
+  color: rgba(245, 240, 232, 0.8);
   font-family: 'Rajdhani', sans-serif;
   font-size: 12px;
   letter-spacing: 1px;
-  padding: 4px 8px;
-  width: 0;
-  opacity: 0;
-  transition: width 0.4s ease, opacity 0.3s ease;
+  width: 140px;
+  opacity: 1;
+  transition: all 0.3s ease;
   outline: none;
 }
 
@@ -312,9 +311,8 @@ body {
   color: rgba(245, 240, 232, 0.35);
 }
 
-#searchInput.open {
-  width: 140px;
-  opacity: 1;
+#searchInput:focus {
+  border-bottom-color: #c9a24c;
 }
 
 .search-btn {
