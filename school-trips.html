@@ -6,6 +6,7 @@
   <title>School Trips — National Park Pakistan</title>
   <meta name="description" content="Educational school trips and outdoor learning programs in Pakistan National Park." />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet" />
   <style>
     *{margin:0;padding:0;box-sizing:border-box;}
     html{scroll-behavior:smooth;}
@@ -19,7 +20,7 @@
     .navbar{position:fixed;top:0;left:0;right:0;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(10,9,8,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,169,110,0.15);z-index:9999;}
     .nav-left{flex:1;display:flex;align-items:center;}
     .nav-right{flex:1;display:flex;align-items:center;justify-content:flex-end;}
-    .logo-area{position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);z-index:1001;}
+    .navbar .logo-area{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;}
     .main-logo,.center-logo{height:50px;width:auto;}
     .nav-btn{background:none;border:none;color:rgba(245,240,232,0.75);font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;padding:8px 0;transition:color 0.2s;white-space:nowrap;}
     .nav-btn:hover,.nav-item:hover .nav-btn{color:var(--gold);}
@@ -124,11 +125,6 @@
     </div>
   </div>
 
-  <div class="logo-area">
-    <img src="img/logo.png" alt="National Park Pakistan Logo" class="main-logo"
-      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-    <div class="logo-placeholder" style="display:none;">NATL<br>PARK</div>
-  </div>
   <nav class="navbar">
 
   <!-- LEFT -->
@@ -218,7 +214,67 @@
 
     </div>
   </div>
+
+  <!-- HAMBURGER MENU BUTTON -->
+  <button class="hamburger-menu" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu">
+  <div class="mobile-menu-content">
+    <!-- MORE -->
+    <div class="mobile-nav-item">
+      <button class="mobile-nav-btn">MORE</button>
+      <div class="mobile-dropdown">
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+        <a href="explore-more.html">Explore More</a>
+        <a href="Privacy-Policy.html">Privacy Policy</a>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="mobile-nav-item">
+      <button class="mobile-nav-btn">ABOUT</button>
+      <div class="mobile-dropdown">
+        <a href="about.html">About Us</a>
+        <a href="services.html">Our Services</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="mobile-nav-item">
+      <button class="mobile-nav-btn">SERVICES</button>
+      <div class="mobile-dropdown">
+        <a href="services.html">All Services</a>
+        <a href="guided-tours.html">Guided Tours</a>
+        <a href="camping-sites.html">Camping Sites</a>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="mobile-nav-item">
+      <button class="mobile-nav-btn">CONTACT</button>
+      <div class="mobile-dropdown">
+        <a href="contact.html">Contact Us</a>
+        <a href="careers.html">Careers</a>
+      </div>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="mobile-search-wrap">
+      <input type="text" id="mobileSearchInput" placeholder="Search...">
+      <button onclick="performMobileSearch()">SEARCH</button>
+    </div>
+  </div>
+</div>
 
 <!-- Hero -->
 <section class="hero">
@@ -242,7 +298,7 @@
     <!-- Elementary Program -->
     <div class="school-card">
       <div class="school-img">
-        <img src="img/Indian-cobra-naja-naja-venonmous-snake-reptile-hood.webp" alt="Elementary Program">
+        <img src="img/school-nature-kids.jpg" alt="Elementary Program">
         <span class="school-age">AGES 6-11</span>
       </div>
       <div class="school-info">
@@ -261,7 +317,7 @@
     <!-- Middle School Program -->
     <div class="school-card">
       <div class="school-img">
-        <img src="img/corbett-bengal-monitor-lizard-saurabh-sawant_iojppq.jpg" alt="Middle School Program">
+        <img src="img/school-outdoor-learning.jpg" alt="Middle School Program">
         <span class="school-age">AGES 12-14</span>
       </div>
       <div class="school-info">
@@ -280,7 +336,7 @@
     <!-- High School Program -->
     <div class="school-card">
       <div class="school-img">
-        <img src="img/1200.jfif" alt="High School Program">
+        <img src="img/school-field-research.jpg" alt="High School Program">
         <span class="school-age">AGES 15-18</span>
       </div>
       <div class="school-info">
@@ -318,7 +374,7 @@
     <!-- Camping Adventure -->
     <div class="school-card">
       <div class="school-img">
-        <img src="img/Himalayan-Brown-Bear-1.webp" alt="Camping Adventure">
+        <img src="img/camping-tents-night.jpg" alt="Camping Adventure">
         <span class="school-age">AGES 12+</span>
       </div>
       <div class="school-info">
@@ -337,7 +393,7 @@
     <!-- Cultural Heritage -->
     <div class="school-card">
       <div class="school-img">
-        <img src="img/peregrine-falcon.jpg" alt="Cultural Heritage">
+        <img src="img/cultural-heritage-village.jpg" alt="Cultural Heritage">
         <span class="school-age">ALL AGES</span>
       </div>
       <div class="school-info">
@@ -758,5 +814,7 @@
     }
   </style>
 
+  <link rel="stylesheet" href="smooth.css">
+  <script src="script.js"></script>
 </body>
 </html>

@@ -38,11 +38,6 @@
   <div id="root"></div>
 
 
-  <div class="logo-area">
-    <img src="img/logo.png" alt="National Park Pakistan Logo" class="main-logo"
-      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-    <div class="logo-placeholder" style="display:none;">NATL<br>PARK</div>
-  </div>
   <nav class="navbar">
 
   <!-- LEFT -->
@@ -55,7 +50,7 @@
             <a href="about.html">About</a>
             <a href="services.html">Services</a>
             <a href="contact.html">Contact</a>
-            <a href="explore.html">Explore More</a>
+            <a href="explore-more.html">Explore More</a>
             <a href="Privacy-Policy.html">Privacy Policy</a>
           </div>
         </div>
@@ -95,7 +90,7 @@
         <button class="nav-btn">SERVICES ▾</button>
         <div class="dropdown mega-dropdown">
           <div class="mega-img-wrap">
-            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80"
+            <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=600&q=80"
               alt="Guided tours">
           </div>
           <div class="mega-content">
@@ -140,7 +135,66 @@
     </div>
   </div>
 
+  <!-- HAMBURGER MENU BUTTON -->
+  <button class="hamburger-menu" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu">
+  <div class="mobile-menu-content">
+    <!-- MORE -->
+    <div class="mobile-nav-item">
+      <button class="mobile-nav-btn">MORE</button>
+      <div class="mobile-dropdown">
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+        <a href="explore-more.html">Explore More</a>
+        <a href="Privacy-Policy.html">Privacy Policy</a>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="mobile-nav-item">
+      <button class="mobile-nav-btn">ABOUT</button>
+      <div class="mobile-dropdown">
+        <a href="about.html">About Us</a>
+        <a href="services.html">Our Services</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="mobile-nav-item">
+      <button class="mobile-nav-btn">SERVICES</button>
+      <div class="mobile-dropdown">
+        <a href="services.html">All Services</a>
+        <a href="guided-tours.html">Guided Tours</a>
+        <a href="camping-sites.html">Camping Sites</a>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="mobile-nav-item">
+      <button class="mobile-nav-btn">CONTACT</button>
+      <div class="mobile-dropdown">
+        <a href="contact.html">Contact Us</a>
+        <a href="careers.html">Careers</a>
+      </div>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="mobile-search-wrap">
+      <input type="text" id="mobileSearchInput" placeholder="Search...">
+      <button onclick="performMobileSearch()">SEARCH</button>
+    </div>
+  </div>
+</div>
   <!-- hero section -->
   <div class="hero-section">
     <div class="hero-bg"></div>
@@ -153,9 +207,6 @@
       <div class="hero-divider">
         <span></span><i></i><span></span>
       </div>
-      <img src="img/logo.png" alt="Park emblem" class="hero-mid-logo"
-        onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
-      <div class="hero-logo-placeholder" style="display:none;">NATL<br>PARK<br>PK</div>
     </div>
     <div class="scroll-cue">
       <div class="scroll-line"></div>
@@ -307,56 +358,56 @@
     </div>
   </section>
 
-  <!-- WILDLIFE / VIDEO SECTION -->
-  <section class="wildlife-section">
-    <div class="wildlife-header">
-      <div>
-        <p class="section-eyebrow">Wild Encounters</p>
-        <h2 class="section-title">Pakistan's <span>Wildlife</span></h2>
-      </div>
-      <div class="wildlife-header-right">
-        <p>From the elusive snow leopard to the majestic Marco Polo sheep — Pakistan's mountains shelter creatures found
-          nowhere else on Earth.</p>
-      </div>
+ <!-- WILDLIFE / VIDEO SECTION -->
+ <section class="wildlife-section">
+  <div class="wildlife-header">
+    <div>
+      <p class="section-eyebrow">Wild Encounters</p>
+      <h2 class="section-title">Pakistan's <span>Wildlife</span></h2>
     </div>
+    <div class="wildlife-header-right">
+      <p>From the elusive snow leopard to the majestic Marco Polo sheep — Pakistan's mountains shelter creatures found
+        nowhere else on Earth.</p>
+    </div>
+  </div>
 
-    <div class="wildlife-grid">
-      <div class="wildlife-main">
-        <img src="https://images.unsplash.com/photo-1474511320723-9a56873867b5?auto=format&fit=crop&w=1200&q=80"
-          alt="Wildlife">
+  <div class="wildlife-grid">
+    <div class="wildlife-main">
+      <img src="https://images.unsplash.com/photo-1474511320723-9a56873867b5?auto=format&fit=crop&w=1200&q=80"
+        alt="Wildlife">
+      <div class="wildlife-overlay"></div>
+      <div class="wildlife-play">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+          <polygon points="5,3 19,12 5,21" />
+        </svg>
+      </div>
+      <div class="wildlife-main-label">
+        <h3>Into the Wild</h3>
+        <span>Watch the film</span>
+      </div>
+    </div>
+    <div class="wildlife-side">
+      <div class="wildlife-card">
+        <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=700&q=80"
+          alt="Snow Leopard territory">
         <div class="wildlife-overlay"></div>
-        <div class="wildlife-play">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
-            <polygon points="5,3 19,12 5,21" />
-          </svg>
-        </div>
-        <div class="wildlife-main-label">
-          <h3>Into the Wild</h3>
-          <span>Watch the film</span>
+        <div class="wildlife-card-label">
+          <span>Featured</span>
+          <h4>Snow Leopard Territory</h4>
         </div>
       </div>
-      <div class="wildlife-side">
-        <div class="wildlife-card">
-          <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=700&q=80"
-            alt="Snow Leopard territory">
-          <div class="wildlife-overlay"></div>
-          <div class="wildlife-card-label">
-            <span>Featured</span>
-            <h4>Snow Leopard Territory</h4>
-          </div>
-        </div>
-        <div class="wildlife-card">
-          <img src="https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?auto=format&fit=crop&w=700&q=80"
-            alt="Himalayan Birds">
-          <div class="wildlife-overlay"></div>
-          <div class="wildlife-card-label">
-            <span>Featured</span>
-            <h4>Himalayan Bird Life</h4>
-          </div>
+      <div class="wildlife-card">
+        <img src="https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?auto=format&fit=crop&w=700&q=80"
+          alt="Himalayan Birds">
+        <div class="wildlife-overlay"></div>
+        <div class="wildlife-card-label">
+          <span>Featured</span>
+          <h4>Himalayan Bird Life</h4>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -568,6 +619,7 @@
     </div>
   </footer>
 
+  <link rel="stylesheet" href="smooth.css">
   <script src="script.js"></script>
 
   <script>
@@ -612,6 +664,32 @@
     }
   });
   document.querySelector('.search-btn').addEventListener('click', performSearch);
+
+  // Wildlife fox video — poster image stays; video plays on top
+  (function () {
+    const player = document.getElementById('wildlifeFoxPlayer');
+    const playBtn = document.getElementById('wildlifeFoxPlayBtn');
+    const video = document.getElementById('wildlifeFoxVideo');
+    if (!player || !playBtn || !video) return;
+
+    playBtn.addEventListener('click', function () {
+      player.classList.add('is-playing');
+      video.play().catch(function () {
+        player.classList.remove('is-playing');
+      });
+    });
+
+    video.addEventListener('click', function () {
+      if (video.paused) return;
+      video.pause();
+      player.classList.remove('is-playing');
+    });
+
+    video.addEventListener('ended', function () {
+      player.classList.remove('is-playing');
+      video.currentTime = 0;
+    });
+  })();
   </script>
 
 <!-- Back To Top Button -->
@@ -620,7 +698,6 @@
     <polyline points="6 15 12 9 18 15"></polyline>
   </svg>
 </button>
-
 
 </body>
 

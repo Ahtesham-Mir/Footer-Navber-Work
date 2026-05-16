@@ -6,6 +6,7 @@
   <title>Wildlife Guide — National Park Pakistan</title>
   <meta name="description" content="Comprehensive guide to wildlife in Pakistan's National Park - Markhor, snow leopards, and more." />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet" />
   <style>
     *{margin:0;padding:0;box-sizing:border-box;}
     html{scroll-behavior:smooth;}
@@ -14,7 +15,6 @@
     .marquee{display:inline-block;white-space:nowrap;animation:marquee 28s linear infinite;font-family:'Playfair Display',serif;font-style:italic;color:#e8c878;letter-spacing:0.08em;font-size:15px;}
     .marquee span{margin-right:60px;}
     @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-    .logo-area{position:absolute;top:42px;left:20px;z-index:1001;}
     .main-logo{height:72px;width:auto;}
     .logo-placeholder{width:90px;height:90px;border-radius:50%;border:2px solid #c9a24c;display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-size:11px;letter-spacing:1.5px;color:#c9a24c;text-align:center;line-height:1.3;margin:0 auto;}
     :root{--burnt:#c0390b;--burnt-light:#e64a19;--gold:#c9a96e;--cream:#f5f0e8;--dark:#0d0c0a;--mid:#1a1714;--nav-h:88px;}
@@ -22,7 +22,7 @@
     .navbar{position:fixed;top:0;left:0;right:0;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(10,9,8,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,169,110,0.15);z-index:9999;}
     .nav-left{flex:1;display:flex;align-items:center;}
     .nav-right{flex:1;display:flex;align-items:center;justify-content:flex-end;}
-    .logo-area{position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);z-index:1001;}
+    .navbar .logo-area{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;}
     .main-logo,.center-logo{height:50px;width:auto;}
     .nav-btn{background:none;border:none;color:rgba(245,240,232,0.75);font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;padding:8px 0;transition:color 0.2s;white-space:nowrap;}
     .nav-btn:hover,.nav-item:hover .nav-btn{color:var(--gold);}
@@ -128,11 +128,6 @@
     </div>
   </div>
 
-  <div class="logo-area">
-    <img src="img/logo.png" alt="National Park Pakistan Logo" class="main-logo"
-      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-    <div class="logo-placeholder" style="display:none;">NATL<br>PARK</div>
-  </div>
   <nav class="navbar">
 
   <!-- LEFT -->
@@ -222,7 +217,67 @@
 
     </div>
   </div>
+
+  <!-- HAMBURGER MENU BUTTON -->
+  <button class="hamburger-menu" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu">
+  <div class="mobile-menu-content">
+    <!-- MORE -->
+    <div class="mobile-nav-item">
+      <button class="mobile-nav-btn">MORE</button>
+      <div class="mobile-dropdown">
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+        <a href="explore-more.html">Explore More</a>
+        <a href="Privacy-Policy.html">Privacy Policy</a>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="mobile-nav-item">
+      <button class="mobile-nav-btn">ABOUT</button>
+      <div class="mobile-dropdown">
+        <a href="about.html">About Us</a>
+        <a href="services.html">Our Services</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="mobile-nav-item">
+      <button class="mobile-nav-btn">SERVICES</button>
+      <div class="mobile-dropdown">
+        <a href="services.html">All Services</a>
+        <a href="guided-tours.html">Guided Tours</a>
+        <a href="camping-sites.html">Camping Sites</a>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="mobile-nav-item">
+      <button class="mobile-nav-btn">CONTACT</button>
+      <div class="mobile-dropdown">
+        <a href="contact.html">Contact Us</a>
+        <a href="careers.html">Careers</a>
+      </div>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="mobile-search-wrap">
+      <input type="text" id="mobileSearchInput" placeholder="Search...">
+      <button onclick="performMobileSearch()">SEARCH</button>
+    </div>
+  </div>
+</div>
 
 <!-- Hero -->
 <section class="hero">
@@ -246,7 +301,7 @@
     <!-- Markhor -->
     <div class="wildlife-card">
       <div class="wildlife-img">
-        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=600&q=80" alt="Markhor">
+        <img src="img/Markhor-nick-sokolov-qsxHmrE7Hu4-unsplash-1.webp" alt="Markhor">
       </div>
       <div class="wildlife-info">
         <h3 class="wildlife-name">Markhor</h3>
@@ -273,7 +328,7 @@
     <!-- Snow Leopard -->
     <div class="wildlife-card">
       <div class="wildlife-img">
-        <img src="https://images.unsplash.com/photo-1583337136580-d8a8e721c794?auto=format&fit=crop&w=600&q=80" alt="Snow Leopard">
+        <img src="img/snow-leopard.jpg" alt="Snow Leopard">
       </div>
       <div class="wildlife-info">
         <h3 class="wildlife-name">Snow Leopard</h3>
@@ -300,7 +355,7 @@
     <!-- Himalayan Brown Bear -->
     <div class="wildlife-card">
       <div class="wildlife-img">
-        <img src="https://images.unsplash.com/photo-1614728288918-1e9c7570b5c8?auto=format&fit=crop&w=600&q=80" alt="Brown Bear">
+        <img src="img/Himalayan-Brown-Bear-1.webp" alt="Brown Bear">
       </div>
       <div class="wildlife-info">
         <h3 class="wildlife-name">Himalayan Brown Bear</h3>
@@ -327,7 +382,7 @@
     <!-- Himalayan Ibex -->
     <div class="wildlife-card">
       <div class="wildlife-img">
-        <img src="https://images.unsplash.com/photo-1558981000-f29575638428?auto=format&fit=crop&w=600&q=80" alt="Ibex">
+        <img src="img/himalayan-ibex.jpg" alt="Ibex">
       </div>
       <div class="wildlife-info">
         <h3 class="wildlife-name">Himalayan Ibex</h3>
@@ -354,7 +409,7 @@
     <!-- Black Bear -->
     <div class="wildlife-card">
       <div class="wildlife-img">
-        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80" alt="Black Bear">
+        <img src="img/asian-black-bear.jpg" alt="Black Bear">
       </div>
       <div class="wildlife-info">
         <h3 class="wildlife-name">Asian Black Bear</h3>
@@ -381,7 +436,7 @@
     <!-- Marco Polo Sheep -->
     <div class="wildlife-card">
       <div class="wildlife-img">
-        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=600&q=80" alt="Marco Polo Sheep">
+        <img src="img/marco-polo-sheep.jpg" alt="Marco Polo Sheep">
       </div>
       <div class="wildlife-info">
         <h3 class="wildlife-name">Marco Polo Sheep</h3>
@@ -809,5 +864,7 @@
     }
   </style>
 
+  <link rel="stylesheet" href="smooth.css">
+  <script src="script.js"></script>
 </body>
 </html>

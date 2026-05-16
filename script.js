@@ -43,39 +43,33 @@ if (form) {
   if(y) y.textContent = new Date().getFullYear();
 })();
 
-// Back to Top Button
-document.addEventListener('DOMContentLoaded', function () {
-  var btn = document.getElementById('backToTopBtn');
-  if (!btn) return;
+// Back to Top — supports backToTopBtn, backToTop, and backTop ids
+(function initAllBackToTopButtons() {
+  function wireBackToTop(btn) {
+    if (!btn || btn.dataset.backToTopWired === 'true') return;
+    btn.dataset.backToTopWired = 'true';
 
-  function toggleBtn() {
-    if (window.scrollY > 400) btn.classList.add('show');
-    else btn.classList.remove('show');
+    function toggleBtn() {
+      if (window.scrollY > 400) {
+        btn.classList.add('show');
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('show');
+        btn.classList.remove('visible');
+      }
+    }
+
+    window.addEventListener('scroll', toggleBtn, { passive: true });
+    toggleBtn();
+
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   }
 
-  window.addEventListener('scroll', toggleBtn, { passive: true });
-  toggleBtn();
-
-  btn.addEventListener('click', function (e) {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-});
-
-
-// About Us Js
-// Back to Top button — appears after 400px scroll
-(function () {
-  const btn = document.getElementById('backToTop');
-  if (!btn) return;
-  const toggle = () => {
-    if (window.scrollY > 400) btn.classList.add('show');
-    else btn.classList.remove('show');
-  };
-  window.addEventListener('scroll', toggle, { passive: true });
-  toggle();
-  btn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  ['backToTopBtn', 'backToTop', 'backTop'].forEach(function (id) {
+    wireBackToTop(document.getElementById(id));
   });
 })();
 
@@ -171,3 +165,181 @@ document.querySelectorAll('.navbar a').forEach(a => {
     if (a.getAttribute('href') === '#') e.preventDefault();
   });
 });
+
+// Mobile Menu Toggle
+(function () {
+  const hamburger = document.querySelector('.hamburger-menu');
+  const mobileMenu = document.querySelector('.mobile-menu');
+  const mobileNavBtns = document.querySelectorAll('.mobile-nav-btn');
+
+  if (!hamburger || !mobileMenu) return;
+
+  function closeAllDropdowns() {
+    mobileNavBtns.forEach(function (btn) {
+      btn.classList.remove('active');
+      btn.setAttribute('aria-expanded', 'false');
+      const dropdown = btn.nextElementSibling;
+      if (dropdown && dropdown.classList.contains('mobile-dropdown')) {
+        dropdown.classList.remove('active');
+      }
+    });
+  }
+
+  function closeMobileMenu() {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    closeAllDropdowns();
+  }
+
+  hamburger.setAttribute('aria-expanded', 'false');
+  hamburger.setAttribute('aria-controls', 'mobileMenuPanel');
+  mobileMenu.id = mobileMenu.id || 'mobileMenuPanel';
+
+  hamburger.addEventListener('click', function (e) {
+    e.stopPropagation();
+    const willOpen = !mobileMenu.classList.contains('active');
+    hamburger.classList.toggle('active', willOpen);
+    mobileMenu.classList.toggle('active', willOpen);
+    hamburger.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+    document.body.style.overflow = willOpen ? 'hidden' : '';
+    if (willOpen) {
+      closeAllDropdowns();
+    } else {
+      closeAllDropdowns();
+    }
+  });
+
+  mobileNavBtns.forEach(function (btn) {
+    btn.setAttribute('aria-expanded', 'false');
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      const dropdown = btn.nextElementSibling;
+      const isOpen = btn.classList.contains('active');
+
+      closeAllDropdowns();
+
+      if (!isOpen) {
+        btn.classList.add('active');
+        btn.setAttribute('aria-expanded', 'true');
+        if (dropdown && dropdown.classList.contains('mobile-dropdown')) {
+          dropdown.classList.add('active');
+        }
+      }
+    });
+  });
+
+  document.querySelectorAll('.mobile-dropdown a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      closeMobileMenu();
+    });
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!mobileMenu.classList.contains('active')) return;
+    if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
+      closeMobileMenu();
+    }
+  });
+})();
+
+// Mobile Search Function
+function performMobileSearch() {
+  const searchInput = document.getElementById('mobileSearchInput');
+  if (!searchInput) return;
+  const searchTerm = searchInput.value.toLowerCase().trim();
+
+  // Search redirects
+  if (searchTerm === 'k2 base camp' || searchTerm === 'k2') {
+    window.location.href = 'k2-base-camp.html';
+  } else if (searchTerm === 'hunza valley' || searchTerm === 'hunza') {
+    window.location.href = 'hunza-valley.html';
+  } else if (searchTerm === 'fairy meadows' || searchTerm === 'fairy') {
+    window.location.href = 'fairy-meadows.html';
+  } else if (searchTerm === 'deosai' || searchTerm === 'deosai plains') {
+    window.location.href = 'deosai.html';
+  } else {
+    searchInput.style.borderColor = '#FF4500';
+    setTimeout(() => {
+      searchInput.style.borderColor = '';
+    }, 2000);
+  }
+}
+
+// Smooth scroll-in for sections (respects prefers-reduced-motion)
+function initSmoothReveal() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var skipWithin = '.navbar, .mobile-menu, .na-marquee, .footer-scene';
+  var sectionSelectors = [
+    'section',
+    '.hero-section',
+    '.hero',
+    '.explore-section',
+    '.destinations-section',
+    '.experience-section',
+    '.wildlife-section',
+    '.camping-section',
+    '.access-section',
+    '.tabs-section',
+    '.description-section',
+    '.content-section',
+    '.perks-section',
+    '.why-section',
+    '.footer-body'
+  ];
+
+  var revealEls = [];
+  var seen = [];
+
+  function shouldSkip(el) {
+    if (!el || el.nodeType !== 1) return true;
+    if (el.matches(skipWithin) || el.closest(skipWithin)) return true;
+    if (el.closest('.navbar') || el.closest('.mobile-menu')) return true;
+    return seen.indexOf(el) !== -1;
+  }
+
+  sectionSelectors.forEach(function (sel) {
+    document.querySelectorAll(sel).forEach(function (el) {
+      if (shouldSkip(el)) return;
+      seen.push(el);
+      el.classList.add('reveal');
+      revealEls.push(el);
+    });
+  });
+
+  document.querySelectorAll(
+    '.dest-grid, .camping-grid, .perks-grid, .why-grid, .perks-items, .wildlife-side'
+  ).forEach(function (grid) {
+    if (shouldSkip(grid)) return;
+    grid.classList.add('reveal-stagger');
+    Array.from(grid.children).forEach(function (child, i) {
+      child.style.transitionDelay = Math.min(i, 8) * 0.07 + 's';
+    });
+    revealEls.push(grid);
+  });
+
+  if (!revealEls.length) return;
+
+  var observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    },
+    { root: null, rootMargin: '0px 0px -6% 0px', threshold: 0.06 }
+  );
+
+  revealEls.forEach(function (el) {
+    observer.observe(el);
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initSmoothReveal);
+} else {
+  initSmoothReveal();
+}
